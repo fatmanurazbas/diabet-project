@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -77,6 +77,100 @@
         {% if prediction_text %}
         <div class="result text-center">
             <h3>{{ prediction_text }}</h3>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-bottom: 30px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .plot {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Diabetes Prediction</h2>
+        <form action="/predict" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="pregnancies">Pregnancies:</label>
+                    <input type="number" class="form-control" name="pregnancies" step="any" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="glucose">Glucose:</label>
+                    <input type="number" class="form-control" name="glucose" step="any" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="blood_pressure">Blood Pressure:</label>
+                    <input type="number" class="form-control" name="blood_pressure" step="any" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="skin_thickness">Skin Thickness:</label>
+                    <input type="number" class="form-control" name="skin_thickness" step="any" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="insulin">Insulin:</label>
+                    <input type="number" class="form-control" name="insulin" step="any" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="bmi">BMI:</label>
+                    <input type="number" class="form-control" name="bmi" step="any" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dpf">Diabetes Pedigree Function:</label>
+                    <input type="number" class="form-control" name="dpf" step="any" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="age">Age:</label>
+                    <input type="number" class="form-control" name="age" step="any" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Show Result</button>
+        </form>
+        {% if prediction_text %}
+        <div class="result text-center">
+            <h3 style="color:red">{{ prediction_text }}</h3>
+        </div>
+        {% endif %}
+        {% if plot_url %}
+        <div class="plot">
+            <img src="{{ plot_url }}" alt="User Input Features">
         </div>
         {% endif %}
     </div>
